@@ -1,0 +1,15 @@
+#! /usr/bin/python
+
+import sys
+
+f = open('/home/krrr/pwn/ex.py', 'r')
+f2 = open('./ex.py', 'w')
+
+d = f.read()
+
+d = d.replace("ELF('')", "ELF('"+sys.argv[1]+"')")
+d = d.replace("ELF('', checksec=False)", "ELF('"+sys.argv[2]+"', checksec=False)")
+
+f2.write(d)
+
+f.close()
